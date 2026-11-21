@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<meta name="description" content="Redro Aleppo Center Cash - دفتر حسابات محلي يعمل دون إنترنت">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+<title>Redro Center Cash</title>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" aria-label="Redro Center Cash"><span class="brand-mark">R</span><span><b>REDRO</b><small> CENTER CASH</small></span></a>
+  <div class="top-actions"><span class="offline-status"><i></i> يعمل محلياً</span><button id="themeBtn" class="icon-button" type="button" aria-label="تبديل المظهر">◐</button></div>
+</header>
+<main class="shell">
+  <section id="accountsScreen">
+    <div class="page-heading"><div><p class="eyebrow">إدارة الحسابات</p><h1>دفتر الحسابات</h1><p class="muted">كل بياناتك محفوظة على هذا الجهاز</p></div><div class="heading-symbol">▤</div></div>
+    <div class="summary-grid">
+      <article class="summary-card"><span>عدد الحسابات</span><strong id="accountCount">0</strong></article>
+      <article class="summary-card"><span>إجمالي الأرصدة</span><strong id="overallBalance">0</strong></article>
+    </div>
+    <section class="panel">
+      <div class="panel-heading"><div><h2>الحسابات</h2><p class="muted">أنشئ حساباً أو افتح حساباً موجوداً</p></div><button id="addAccountBtn" class="primary-button" type="button">＋ حساب جديد</button></div>
+      <div class="search-wrap"><span>⌕</span><input id="accountSearch" type="search" placeholder="ابحث عن حساب..." autocomplete="off"></div>
+      <div id="accountsList" class="accounts-list"></div>
+      <div id="emptyAccounts" class="empty-state"><span>▤</span><b>لا توجد حسابات بعد</b><p>ابدأ بإنشاء أول حساب لك</p></div>
+    </section>
+    <section class="panel backup-panel"><div><h2>النسخ الاحتياطي</h2><p class="muted">احتفظ بنسخة من بياناتك أو استعدها على هذا الجهاز</p></div><div class="backup-actions"><button id="exportBtn" class="secondary-button" type="button">تصدير نسخة</button><button id="importBtn" class="secondary-button" type="button">استيراد نسخة</button><input id="importFile" type="file" accept="application/json,.json" hidden></div></section>
+  </section>
+  <section id="accountScreen" hidden>
+    <button id="backBtn" class="back-button" type="button">→ العودة للحسابات</button>
+    <div class="page-heading account-heading"><div><p class="eyebrow">كشف الحساب</p><h1 id="accountTitle">الحساب</h1><p class="muted" id="accountMeta"></p></div><button id="accountMenuBtn" class="secondary-button" type="button">إدارة الحساب</button></div>
+    <div class="summary-grid three">
+      <article class="summary-card"><span>مجموع له</span><strong id="totalCredit">0</strong></article>
+      <article class="summary-card"><span>مجموع عليه</span><strong id="totalDebit">0</strong></article>
+      <article class="summary-card balance-card"><span>الرصيد النهائي</span><strong id="balance">0</strong></article>
+    </div>
+    <section class="panel">
+      <div class="panel-heading"><div><h2 id="paymentFormTitle">إضافة حركة مالية</h2><p class="muted">أدخل التفاصيل والمبلغ في الخانة المناسبة</p></div></div>
+      <form id="paymentForm" class="payment-form">
+        <label>التاريخ<input id="date" type="date" required></label>
+        <label class="wide">التفاصيل<input id="details" type="text" maxlength="180" placeholder="وصف الحركة"></label>
+        <label>عليه<input id="debit" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"></label>
+        <label>له<input id="credit" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"></label>
+        <div class="form-actions"><button id="savePaymentBtn" class="primary-button" type="submit">حفظ الحركة</button><button id="cancelEditBtn" class="secondary-button" type="button" hidden>إلغاء التعديل</button></div>
+      </form>
+    </section>
+    <section class="panel">
+      <div class="panel-heading"><div><h2>الحركات المالية</h2><p class="muted" id="paymentCount">0 حركة</p></div><button id="printBtn" class="secondary-button" type="button">طباعة الكشف</button></div>
+      <div class="table-scroll"><table><thead><tr><th>التاريخ</th><th>التفاصيل</th><th>عليه</th><th>له</th><th>الرصيد</th><th>إجراءات</th></tr></thead><tbody id="tableBody"></tbody></table></div>
+      <div id="emptyPayments" class="empty-state compact"><span>⇄</span><b>لا توجد حركات مالية</b><p>أضف أول حركة من النموذج أعلاه</p></div>
+    </section>
+  </section>
+  <footer><span>REDRO CENTER CASH</span><span>نسخة محلية مستقلة · دون تسجيل دخول أو خادم</span></footer>
+</main>
+<div id="modal" class="modal" hidden><div class="modal-card"><div class="modal-heading"><h2 id="modalTitle"></h2><button id="modalClose" class="icon-button" type="button">×</button></div><div id="modalContent"></div></div></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
