@@ -1,0 +1,9 @@
+{
+  "appId": "com.redro.centercash",
+  "appName": "Redro Center Cash",
+  "webDir": ".",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}
